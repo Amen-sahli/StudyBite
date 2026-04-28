@@ -1,0 +1,316 @@
+
+header {
+    background: linear-gradient(135deg, #f4c430, #e0b020);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Group Styling */
+.group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sigle {
+    font-size: 18px;
+    display: inline-block;
+}
+
+/* Input Fields */
+.group input[type="text"],
+.group input[type="email"],
+.group input[type="tel"],
+.group input[type="date"],
+.group input[type="time"],
+.group select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 25px;
+    border: none;
+    background: #f1f1f1;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.group textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 14px;
+    border: none;
+    background: #f1f1f1;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 13px;
+    resize: vertical;
+    min-height: 90px;
+    box-sizing: border-box;
+}
+
+.group input[type="text"]:focus,
+.group input[type="email"]:focus,
+.group input[type="tel"]:focus,
+.group input[type="date"]:focus,
+.group input[type="time"]:focus,
+.group select:focus {
+    outline: 2px solid #f4c430;
+    background: #fff;
+}
+
+.group textarea:focus {
+    outline: 2px solid #f4c430;
+    background: #fff;
+}
+
+.group select {
+    cursor: pointer;
+}
+
+/* Drinks Selection */
+.drinks {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.drink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.drink input[type="radio"] {
+    cursor: pointer;
+    accent-color: #f4c430;
+}
+
+.drink span {
+    font-size: 13px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.drink input[type="radio"]:checked + span {
+    color: #f4c430;
+    font-weight: 600;
+}
+
+/* Map and Seating */
+.map {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f1f1;
+}
+
+.map label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-item .box {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    background: #f1f1f1;
+}
+
+.legend-item .box.selected {
+    background: #f4c430;
+    border-color: #f4c430;
+}
+
+.legend-item .box.occupied {
+    background: #e0e0e0;
+    border-color: #999;
+}
+
+/* Seating Plan */
+.plan {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 10px;
+}
+
+.zone,
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.surface {
+    background: linear-gradient(135deg, #f4c430, #e0b020);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+/* Seats Grid */
+.seats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 8px;
+}
+
+.seat {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #f1f1f1;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.seat.free {
+    background: #fff;
+    border-color: #ddd;
+}
+
+.seat.free:hover {
+    background: #f4c430;
+    border-color: #f4c430;
+    color: white;
+    transform: scale(1.05);
+}
+
+.seat.occupied {
+    background: #e0e0e0;
+    border-color: #999;
+    cursor: not-allowed;
+    color: #666;
+}
+
+.seat.occupied:hover {
+    transform: none;
+}
+
+.seat.selected {
+    background: #f4c430;
+    border-color: #f4c430;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .boite-reservation {
+        width: 95%;
+        padding: 30px 20px;
+    }
+
+    .plan {
+        grid-template-columns: 1fr;
+    }
+
+    .drinks {
+        flex-direction: column;
+    }
+
+    .legend {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .seats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .boite-reservation {
+        padding: 20px 15px;
+    }
+
+    .group input[type="text"],
+    .group input[type="email"],
+    .group input[type="tel"],
+    .group input[type="date"],
+    .group input[type="time"],
+    .group select {
+        padding: 10px;
+    }
+
+    .seats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .seat {
+        font-size: 11px;
+    }
+}

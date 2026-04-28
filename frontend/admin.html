@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <div class="page-entiere">
+        <div class="boite-admin">
+
+
+            <div class="logo">
+                <a href="index.html" title="Retour accueil">
+                    <img src="logo.png" alt="Logo">
+                </a>
+            </div>
+
+            <h1 class="titre">Tableau de bord administrateur</h1>
+            <p class="sous-titre">Pilotez les réservations par place et suivez les détails de chaque session.</p>
+            <div style="display: flex; justify-content: center; margin-bottom: 16px;">
+                <button type="button" id="logoutBtn">Deconnexion</button>
+            </div>
+
+
+            <div class="stats">
+                <div class="card">
+                    <h3 id="totalReservations">0</h3>
+                    <p>Nombre total de réservations (selon vos filtres)</p>
+                </div>
+
+                <div class="card">
+                    <h3 id="todayReservations">0</h3>
+                    <p>Réservations prévues aujourd'hui</p>
+                </div>
+
+                <div class="card">
+                    <h3 id="uniqueClients">0</h3>
+                    <p>Nombre de places distinctes reservées dans la vue</p>
+                </div>
+            </div>
+
+
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="Filtrer par place (ex: A1, B3, C2)">
+                <input type="date" id="dateFilter">
+            </div>
+
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                            <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Machroub</th>
+                            <th>Place</th>
+                            <th>Date</th>
+                            <th>Heure début</th>
+                            <th>Durée</th>
+                            <th>Heure fin</th>
+                            <th>Réclamation</th>
+                            <th>Créé le</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservationsTable"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="../back/supabase-client.js"></script>
+    <script src="../back/admin.js"></script>
+
+</body>
+
+</html>

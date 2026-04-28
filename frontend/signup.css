@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+#error-message {
+    color: red;
+    margin-bottom: 15px;
+    font-size: 14px;
+    white-space: pre-line;
+}
+
+.page-entiere {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.boite-connexion {
+    background-color: white;
+    width: 350px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.titre {
+    margin-bottom: 5px;
+}
+
+.sous-titre {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 30px;
+}
+
+.groupe-input {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.groupe-input label {
+    font-size: 13px;
+    color: #777;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.groupe-input input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background-color: #f1f1f1;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.groupe-input input:focus {
+    outline: 2px solid #f4c430;
+}
+
+.bouton-connexion {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background-color: #f4c430;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.bouton-connexion:hover {
+    background-color: #e0b020;
+}
+
+.zone-inscription {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #333;
+}
+
+.zone-inscription a {
+    color: #f4c430;
+    text-decoration: none;
+    font-weight: 600;
+}

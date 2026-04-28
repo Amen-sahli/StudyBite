@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace VIP - Accueil</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(135deg, #fdf6e3, #f7edd4);
+            color: #2d2d2d;
+        }
+
+        .hero {
+            max-width: 980px;
+            margin: 28px auto;
+            background: #fff;
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+        }
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #f4c430;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            margin: 6px 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .cta {
+            border: none;
+            border-radius: 24px;
+            padding: 12px 18px;
+            background: #f4c430;
+            color: #2d2d2d;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .logout {
+            border: none;
+            border-radius: 24px;
+            padding: 12px 18px;
+            background: #323232;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            display: none;
+        }
+
+        .legend {
+            margin-top: 22px;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .status-bar {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #fff8dc;
+            border: 1px solid #f0d980;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .dot.free {
+            background: #f1f1f1;
+            border: 1px solid #d4d4d4;
+        }
+
+        .dot.occupied {
+            background: #e0e0e0;
+            border: 1px solid #9f9f9f;
+        }
+
+        .zones {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+        }
+
+        .zone {
+            background: #fafafa;
+            border-radius: 14px;
+            padding: 14px;
+            border: 1px solid #eee;
+        }
+
+        .zone-title {
+            margin: 0 0 10px;
+            font-weight: 700;
+            color: #4a4a4a;
+        }
+
+        .seats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .seat {
+            border: 1px solid #d5d5d5;
+            background: #fff;
+            border-radius: 8px;
+            min-height: 44px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .seat:hover {
+            background: #f4c430;
+            border-color: #f4c430;
+            color: #fff;
+        }
+
+        .seat.occupied {
+            background: #e0e0e0;
+            border-color: #9f9f9f;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        .seat.occupied:hover {
+            background: #e0e0e0;
+            border-color: #9f9f9f;
+            color: #666;
+        }
+
+        .details {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .detail-card {
+            background: #fff;
+            border: 1px solid #ececec;
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-card h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+        }
+
+        .detail-card p,
+        .detail-card li {
+            margin: 0;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.45;
+        }
+
+        .detail-card ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                margin: 16px;
+                padding: 18px;
+            }
+
+            .top {
+                align-items: flex-start;
+            }
+
+            .brand {
+                width: 100%;
+            }
+
+            .cta {
+                width: 100%;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="top">
+            <div class="brand">
+                <a href="index.html" class="logo" title="Retour accueil">
+                    <img src="logo.png" alt="Logo Espace VIP">
+                </a>
+                <div>
+                    <h1>Espace VIP Coworking</h1>
+                    <p class="subtitle">Apercu de la plateforme. Cliquez sur une place pour commencer votre reservation.</p>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="cta" id="startReservation" type="button">connection et Reserver une place</button>
+                <button class="logout" id="logoutBtn" type="button">Deconnexion</button>
+            </div>
+        </div>
+
+        <div class="legend">
+            <span><span class="dot free"></span>Place disponible</span>
+            <span><span class="dot occupied"></span>Place indisponible</span>
+        </div>
+
+        <div class="status-bar" aria-live="polite">
+            <span id="welcomeState">Mode visiteur: toutes les places sont presentees, y compris les places deja reservees.</span>
+            <span id="seatCount">18 places affichees</span>
+        </div>
+
+        <section class="zones" aria-label="Plan des places">
+            <article class="zone">
+                <h2 class="zone-title">Zone Alpha</h2>
+                <div class="seats">
+                    <button class="seat" data-seat="A1" type="button">A1</button>
+                    <button class="seat" data-seat="A2" type="button">A2</button>
+                    <button class="seat" data-seat="A3" type="button">A3</button>
+                    <button class="seat" data-seat="A4" type="button">A4</button>
+                    <button class="seat" data-seat="A5" type="button">A5</button>
+                    <button class="seat" data-seat="A6" type="button">A6</button>
+                </div>
+            </article>
+            <article class="zone">
+                <h2 class="zone-title">Zone Beta</h2>
+                <div class="seats">
+                    <button class="seat" data-seat="B1" type="button">B1</button>
+                    <button class="seat" data-seat="B2" type="button">B2</button>
+                    <button class="seat" data-seat="B3" type="button">B3</button>
+                    <button class="seat" data-seat="B4" type="button">B4</button>
+                    <button class="seat" data-seat="B5" type="button">B5</button>
+                    <button class="seat" data-seat="B6" type="button">B6</button>
+                </div>
+            </article>
+            <article class="zone">
+                <h2 class="zone-title">Zone Gamma</h2>
+                <div class="seats">
+                    <button class="seat" data-seat="C1" type="button">C1</button>
+                    <button class="seat" data-seat="C2" type="button">C2</button>
+                    <button class="seat" data-seat="C3" type="button">C3</button>
+                    <button class="seat" data-seat="C4" type="button">C4</button>
+                    <button class="seat" data-seat="C5" type="button">C5</button>
+                    <button class="seat" data-seat="C6" type="button">C6</button>
+                </div>
+            </article>
+        </section>
+
+        <section class="details" aria-label="Informations plateforme">
+            <article class="detail-card">
+                <h3>Comment reserver</h3>
+                <ul>
+                    <li>1. Cliquez sur une place dans le plan.</li>
+                    <li>2. Connectez-vous ou creez votre compte.</li>
+                    <li>3. Completez votre reservation (date, heure, boisson).</li>
+                </ul>
+            </article>
+            <article class="detail-card">
+                <h3>Ce que vous trouvez sur place</h3>
+                <p>Espaces Alpha, Beta, Gamma, zone calme, service boissons et suivi de reclamations directement depuis votre reservation.</p>
+            </article>
+            <article class="detail-card">
+                <h3>Infos utiles</h3>
+                <p>Tarif indicatif: 25 DT / jour. Les places indisponibles sont automatiquement masquees apres connexion utilisateur.</p>
+            </article>
+        </section>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="../back/supabase-client.js"></script>
+    <script>
+        const role = localStorage.getItem('role');
+        const allSeats = document.querySelectorAll('.seat');
+        const seatCount = document.getElementById('seatCount');
+        const welcomeState = document.getElementById('welcomeState');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        function rafraichirCompteur() {
+            const occupied = document.querySelectorAll('.seat.occupied').length;
+            const total = allSeats.length;
+            const free = total - occupied;
+            seatCount.textContent = `${free} libres / ${occupied} indisponibles / ${total} total`;
+        }
+
+        if (role === 'user') {
+            welcomeState.textContent = 'Mode utilisateur connecte: les places indisponibles sont affichees en temps reel.';
+            logoutBtn.style.display = 'inline-block';
+        } else if (role === 'admin') {
+            welcomeState.textContent = 'Mode administrateur connecte: accedez directement au dashboard admin.';
+            logoutBtn.style.display = 'inline-block';
+        }
+
+        logoutBtn.addEventListener('click', async function () {
+            try {
+                if (typeof db !== 'undefined') {
+                    await db.auth.signOut();
+                }
+            } catch (e) {
+                console.error(e);
+            }
+
+            localStorage.removeItem('role');
+            localStorage.removeItem('currentUserEmail');
+            window.location.href = 'login.html';
+        });
+
+        document.getElementById('startReservation').addEventListener('click', function () {
+            if (role === 'admin') {
+                window.location.href = 'admin.html';
+                return;
+            }
+
+            if (role === 'user') {
+                window.location.href = 'place.html';
+                return;
+            }
+            window.location.href = 'login.html';
+        });
+
+        async function chargerPlacesIndisponibles() {
+            if (typeof db === 'undefined') {
+                return;
+            }
+
+            const now = new Date().toISOString();
+            const { data, error } = await db
+                .from('reservations')
+                .select('seat')
+                .gte('heure_fin', now);
+
+            if (error) {
+                console.error(error);
+                return;
+            }
+
+            data.forEach(function (r) {
+                const seatBtn = document.querySelector(`.seat[data-seat="${r.seat}"]`);
+                if (seatBtn) {
+                    seatBtn.classList.add('occupied');
+                }
+            });
+
+            rafraichirCompteur();
+        }
+
+        document.querySelectorAll('.seat').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const seat = this.dataset.seat;
+
+                if (this.classList.contains('occupied')) {
+                    return;
+                }
+
+                if (role === 'admin') {
+                    window.location.href = 'admin.html';
+                    return;
+                }
+
+                if (role === 'user') {
+                    window.location.href = `place.html?seat=${encodeURIComponent(seat)}`;
+                    return;
+                }
+
+                window.location.href = `login.html?seat=${encodeURIComponent(seat)}`;
+            });
+        });
+
+        rafraichirCompteur();
+        chargerPlacesIndisponibles();
+    </script>
+</body>
+</html>
