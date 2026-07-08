@@ -1,15 +1,29 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const role = localStorage.getItem('role');
     const logoutBtn = document.getElementById('logoutBtn');
-    if (!role) {
-        window.location.href = 'login.html';
-        return;
-    }
-
+      
     if (role === 'admin') {
         window.location.href = 'admin.html';
         return;
     }
+
+    const {data: { user }} = await db.auth.getUser();
+
+    if (!user) {
+        window.location.href = 'login.html';
+        return;
+    }
+    const { data: client } = await db
+        .from("clients")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+
+    if (!client) {
+        window.location.href = 'login.html';
+        return;
+    }
+
 
     const params = new URLSearchParams(window.location.search);
     const requestedSeat = params.get('seat');

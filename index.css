@@ -1,0 +1,294 @@
+/* =========================================================
+   Espace VIP Coworking — Design tokens (Accueil)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+    --ink: #211d17;
+    --ink-soft: #736a5b;
+    --paper: #faf5e9;
+    --card: #ffffff;
+    --gold: #e0a920;
+    --gold-deep: #b7860f;
+    --gold-tint: #fbecc4;
+    --line: #ece2cd;
+    --occupied-bg: #e4ded0;
+    --occupied-border: #a89c86;
+    --occupied-text: #7a7161;
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 26px;
+    --r-pill: 999px;
+    --shadow: 0 24px 48px -28px rgba(33, 29, 23, .35);
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--paper);
+    background-image:
+        radial-gradient(circle at 12% 8%, rgba(224, 169, 32, .10), transparent 45%),
+        radial-gradient(circle at 92% 82%, rgba(224, 169, 32, .08), transparent 40%);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--gold);
+    flex-shrink: 0;
+    background: var(--card);
+}
+
+.logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.brand-text .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin: 0 0 2px;
+}
+
+.brand-text h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 25px;
+    letter-spacing: -.01em;
+}
+
+.actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+.btn {
+    border: none;
+    border-radius: var(--r-pill);
+    padding: 13px 22px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: #241d0d;
+    box-shadow: 0 10px 22px -10px rgba(224, 169, 32, .65);
+}
+
+.btn-primary:hover { background: var(--gold-deep); transform: translateY(-1px); }
+
+.btn-ghost {
+    background: var(--ink);
+    color: #fff;
+    display: none;
+}
+
+.btn-ghost:hover { background: #383026; }
+
+/* ---------- Status ticket ---------- */
+.status-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow);
+    padding: 18px 22px;
+    margin-bottom: 22px;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+#welcomeState {
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: 560px;
+}
+
+#seatCount {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-deep);
+    background: var(--gold-tint);
+    padding: 6px 14px;
+    border-radius: var(--r-pill);
+    white-space: nowrap;
+}
+
+.legend {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+}
+
+.legend span { display: flex; align-items: center; gap: 8px; }
+
+.dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.dot.free { background: #fff; border: 1.5px solid var(--gold); }
+.dot.occupied { background: var(--occupied-bg); border: 1.5px solid var(--occupied-border); }
+
+/* ---------- Seating chart (boarding-pass style) ---------- */
+.zones {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.zone {
+    background: var(--card);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 1px solid var(--line);
+}
+
+.zone-title {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #2a2416;
+    background: linear-gradient(135deg, var(--gold), #c99417);
+    padding: 14px 16px;
+    position: relative;
+}
+
+/* perforation between stub header and seat body */
+.zone-title::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent 0 4px, rgba(255,255,255,.9) 4px 10px);
+    background-size: 10px 1px;
+    background-repeat: repeat-x;
+}
+
+.seats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 16px;
+}
+
+.seat {
+    font-family: var(--font-mono);
+    border: 1.5px solid var(--line);
+    background: #fff;
+    border-radius: var(--r-sm);
+    min-height: 46px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .04em;
+    cursor: pointer;
+    color: var(--ink);
+    transition: all .15s ease;
+}
+
+.seat:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #241d0d;
+    transform: translateY(-1px);
+}
+
+.seat.occupied {
+    background: var(--occupied-bg);
+    border-color: var(--occupied-border);
+    color: var(--occupied-text);
+    cursor: not-allowed;
+}
+
+.seat.occupied:hover { background: var(--occupied-bg); color: var(--occupied-text); transform: none; }
+
+/* ---------- Info cards ---------- */
+.details {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.detail-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 18px;
+    box-shadow: 0 10px 26px -18px rgba(33, 29, 23, .3);
+}
+
+.detail-card h3 {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.detail-card p, .detail-card li {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+}
+
+.detail-card ol { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+
+@media (max-width: 640px) {
+    .wrap { padding: 22px 16px 48px; }
+    .topbar { align-items: flex-start; }
+    .actions, .btn { width: 100%; }
+    .status-row { align-items: flex-start; }
+}

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../logo.png" type="image/x-icon">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="admin.css">
 </head>
@@ -12,19 +13,17 @@
     <div class="page-entiere">
         <div class="boite-admin">
 
-
             <div class="logo">
                 <a href="index.html" title="Retour accueil">
                     <img src="logo.png" alt="Logo">
                 </a>
             </div>
 
+            <p class="eyebrow">Espace VIP</p>
             <h1 class="titre">Tableau de bord administrateur</h1>
             <p class="sous-titre">Pilotez les réservations par place et suivez les détails de chaque session.</p>
-            <div style="display: flex; justify-content: center; margin-bottom: 16px;">
-                <button type="button" id="logoutBtn">Deconnexion</button>
-            </div>
 
+            <button type="button" id="logoutBtn">Déconnexion</button>
 
             <div class="stats">
                 <div class="card">
@@ -39,21 +38,19 @@
 
                 <div class="card">
                     <h3 id="uniqueClients">0</h3>
-                    <p>Nombre de places distinctes reservées dans la vue</p>
+                    <p>Nombre de places distinctes réservées dans la vue</p>
                 </div>
             </div>
-
 
             <div class="filters">
                 <input type="text" id="searchInput" placeholder="Filtrer par place (ex: A1, B3, C2)">
                 <input type="date" id="dateFilter">
             </div>
 
-
             <div class="table-container">
                 <table>
                     <thead>
-                            <tr>
+                        <tr>
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Téléphone</th>
@@ -75,8 +72,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="../back/supabase-client.js"></script>
-    <script src="../back/admin.js"></script>
+    <script src="../backend/supabase-client.js"></script>
+    <script src="../backend/admin.js"></script>
 
 </body>
 

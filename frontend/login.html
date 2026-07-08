@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../logo.png" type="image/x-icon">
     <title>Page de Connexion</title>
     <link rel="stylesheet" href="login.css">
 </head>
@@ -19,25 +20,23 @@
                 </a>
             </div>
 
+            <p class="eyebrow">Espace VIP</p>
             <h1 class="titre">Bienvenue</h1>
             <p class="sous-titre">Connectez-vous pour réserver une place ou accéder à l'administration.</p>
 
-
             <form id="loginForm">
 
-                
-
                 <div class="groupe-input">
-                    <label>Email</label>
+                    <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="flenbenfoulen@gmail.com" required>
                 </div>
 
                 <div class="groupe-input">
-                    <label>Mot de passe</label>
+                    <label for="password">Mot de passe</label>
                     <input type="password" name="password" id="password" placeholder="••••••••" required>
                 </div>
                 <div id="error-message"></div>
-                <button type="submit" id="login-button" class="bouton-connexion">SE CONNECTER</button>
+                <button type="submit" id="login-button" class="bouton-connexion">Se connecter</button>
 
             </form>
 
@@ -49,8 +48,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="../back/supabase-client.js"></script>
-    <script src="../back/login.js"></script>
+    <script src="../backend/supabase-client.js"></script>
+    <script src="../backend/login.js"></script>
 
 </body>
 

@@ -1,18 +1,9 @@
-const nameInput = document.getElementById("nom");
+    const nameInput = document.getElementById("nom");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirm-password");
 const signupBtn = document.getElementById("signup-btn");
 const errorMessage = document.getElementById("error-message");
-
-// 🔐 Fonction de cryptage simple (César +3)
-function hasherPassword(password) {
-    let result = "";
-    for (let i = 0; i < password.length; i++) {
-        result += String.fromCharCode(password.charCodeAt(i) + 3);
-    }
-    return result;
-}
 
 function verifierChamps() {
     errorMessage.textContent = "";
@@ -41,33 +32,32 @@ signupBtn.addEventListener("click", async (e) => {
 
     if (!verifierChamps()) return;
 
-    // Vérifier si l'email existe déjà dans la table Client
-    const { data: existing } = await db
-        .from('Client')
-        .select('email')
-        .eq('email', email.value)
-        .single();
-
-    if (existing) {
-        errorMessage.textContent = "Cet email est déjà utilisé!";
-        return;
-    }
-
-    // 🔐 Crypter le mot de passe avant sauvegarde
-    const passwordHash = hasherPassword(password.value);
-
-    // Ajouter le client avec le mot de passe crypté
-    const { error } = await db.from('Client').insert({
-        name: nameInput.value,
+    const { data, error } = await db.auth.signUp({
         email: email.value,
-        password: passwordHash
+        password: password.value,
+        options: {
+            data: {
+                name: nameInput.value
+            }
+        }
     });
 
     if (error) {
-        alert("Erreur lors de l'inscription: " + error.message);
+        errorMessage.textContent = error.message;
         return;
     }
 
-    alert("Inscription réussie!");
+    const user = data.user;
+
+    if (user) {
+        await db.from("clients").insert({
+        id: user.id,
+        name: nameInput.value,
+        email: email.value
+    });
+    }
+
+
+    alert("Inscription réussie ! Connectez-vous.");
     window.location.href = "login.html";
 });

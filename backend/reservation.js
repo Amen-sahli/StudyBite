@@ -1,4 +1,3 @@
-
 document.getElementById('reservationForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 

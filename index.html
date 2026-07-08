@@ -3,270 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image/x-icon">
     <title>Espace VIP - Accueil</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', Arial, sans-serif;
-            background: linear-gradient(135deg, #fdf6e3, #f7edd4);
-            color: #2d2d2d;
-        }
-
-        .hero {
-            max-width: 980px;
-            margin: 28px auto;
-            background: #fff;
-            border-radius: 22px;
-            padding: 28px;
-            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
-            box-sizing: border-box;
-        }
-
-        .top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid #f4c430;
-        }
-
-        .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        .subtitle {
-            margin: 6px 0 0;
-            color: #666;
-            font-size: 14px;
-        }
-
-        .cta {
-            border: none;
-            border-radius: 24px;
-            padding: 12px 18px;
-            background: #f4c430;
-            color: #2d2d2d;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .logout {
-            border: none;
-            border-radius: 24px;
-            padding: 12px 18px;
-            background: #323232;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            display: none;
-        }
-
-        .legend {
-            margin-top: 22px;
-            display: flex;
-            gap: 14px;
-            align-items: center;
-            font-size: 13px;
-        }
-
-        .status-bar {
-            margin-top: 14px;
-            padding: 12px 14px;
-            border-radius: 12px;
-            background: #fff8dc;
-            border: 1px solid #f0d980;
-            font-size: 13px;
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-right: 6px;
-        }
-
-        .dot.free {
-            background: #f1f1f1;
-            border: 1px solid #d4d4d4;
-        }
-
-        .dot.occupied {
-            background: #e0e0e0;
-            border: 1px solid #9f9f9f;
-        }
-
-        .zones {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 18px;
-        }
-
-        .zone {
-            background: #fafafa;
-            border-radius: 14px;
-            padding: 14px;
-            border: 1px solid #eee;
-        }
-
-        .zone-title {
-            margin: 0 0 10px;
-            font-weight: 700;
-            color: #4a4a4a;
-        }
-
-        .seats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-        }
-
-        .seat {
-            border: 1px solid #d5d5d5;
-            background: #fff;
-            border-radius: 8px;
-            min-height: 44px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .seat:hover {
-            background: #f4c430;
-            border-color: #f4c430;
-            color: #fff;
-        }
-
-        .seat.occupied {
-            background: #e0e0e0;
-            border-color: #9f9f9f;
-            color: #666;
-            cursor: not-allowed;
-        }
-
-        .seat.occupied:hover {
-            background: #e0e0e0;
-            border-color: #9f9f9f;
-            color: #666;
-        }
-
-        .details {
-            margin-top: 24px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
-        }
-
-        .detail-card {
-            background: #fff;
-            border: 1px solid #ececec;
-            border-radius: 14px;
-            padding: 14px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-        }
-
-        .detail-card h3 {
-            margin: 0 0 8px;
-            font-size: 15px;
-        }
-
-        .detail-card p,
-        .detail-card li {
-            margin: 0;
-            font-size: 13px;
-            color: #555;
-            line-height: 1.45;
-        }
-
-        .detail-card ul {
-            margin: 0;
-            padding-left: 18px;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                margin: 16px;
-                padding: 18px;
-            }
-
-            .top {
-                align-items: flex-start;
-            }
-
-            .brand {
-                width: 100%;
-            }
-
-            .cta {
-                width: 100%;
-            }
-
-            .status-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <header class="hero">
-        <div class="top">
+    <div class="wrap">
+        <header class="topbar">
             <div class="brand">
                 <a href="index.html" class="logo" title="Retour accueil">
                     <img src="logo.png" alt="Logo Espace VIP">
                 </a>
-                <div>
+                <div class="brand-text">
+                    <p class="eyebrow">Coworking &middot; Tunis</p>
                     <h1>Espace VIP Coworking</h1>
-                    <p class="subtitle">Apercu de la plateforme. Cliquez sur une place pour commencer votre reservation.</p>
                 </div>
             </div>
             <div class="actions">
-                <button class="cta" id="startReservation" type="button">connection et Reserver une place</button>
-                <button class="logout" id="logoutBtn" type="button">Deconnexion</button>
+                <button class="btn btn-primary" id="startReservation" type="button">Se connecter et réserver</button>
+                <button class="btn btn-ghost" id="logoutBtn" type="button">Déconnexion</button>
             </div>
-        </div>
+        </header>
 
-        <div class="legend">
-            <span><span class="dot free"></span>Place disponible</span>
-            <span><span class="dot occupied"></span>Place indisponible</span>
-        </div>
-
-        <div class="status-bar" aria-live="polite">
-            <span id="welcomeState">Mode visiteur: toutes les places sont presentees, y compris les places deja reservees.</span>
-            <span id="seatCount">18 places affichees</span>
-        </div>
+        <section class="status-card">
+            <div class="status-row">
+                <span id="welcomeState">Mode visiteur : toutes les places sont présentées, y compris les places déjà réservées.</span>
+                <span id="seatCount">18 places affichées</span>
+            </div>
+            <div class="legend" aria-hidden="false">
+                <span><span class="dot free"></span>Place disponible</span>
+                <span><span class="dot occupied"></span>Place indisponible</span>
+            </div>
+        </section>
 
         <section class="zones" aria-label="Plan des places">
             <article class="zone">
@@ -306,26 +74,26 @@
 
         <section class="details" aria-label="Informations plateforme">
             <article class="detail-card">
-                <h3>Comment reserver</h3>
-                <ul>
-                    <li>1. Cliquez sur une place dans le plan.</li>
-                    <li>2. Connectez-vous ou creez votre compte.</li>
-                    <li>3. Completez votre reservation (date, heure, boisson).</li>
-                </ul>
+                <h3>Comment réserver</h3>
+                <ol>
+                    <li>Cliquez sur une place dans le plan.</li>
+                    <li>Connectez-vous ou créez votre compte.</li>
+                    <li>Complétez votre réservation (date, heure, boisson).</li>
+                </ol>
             </article>
             <article class="detail-card">
                 <h3>Ce que vous trouvez sur place</h3>
-                <p>Espaces Alpha, Beta, Gamma, zone calme, service boissons et suivi de reclamations directement depuis votre reservation.</p>
+                <p>Espaces Alpha, Beta, Gamma, zone calme, service boissons et suivi de réclamations directement depuis votre réservation.</p>
             </article>
             <article class="detail-card">
                 <h3>Infos utiles</h3>
-                <p>Tarif indicatif: 25 DT / jour. Les places indisponibles sont automatiquement masquees apres connexion utilisateur. le paiement en cache</p>
+                <p>Tarif indicatif : 25 DT / jour. Les places indisponibles sont automatiquement masquées après connexion utilisateur. Paiement en espèces sur place.</p>
             </article>
         </section>
-    </header>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="../back/supabase-client.js"></script>
+    <script src="../backend/supabase-client.js"></script>
     <script>
         const role = localStorage.getItem('role');
         const allSeats = document.querySelectorAll('.seat');
@@ -341,10 +109,10 @@
         }
 
         if (role === 'user') {
-            welcomeState.textContent = 'Mode utilisateur connecte: les places indisponibles sont affichees en temps reel.';
+            welcomeState.textContent = 'Mode utilisateur connecté : les places indisponibles sont affichées en temps réel.';
             logoutBtn.style.display = 'inline-block';
         } else if (role === 'admin') {
-            welcomeState.textContent = 'Mode administrateur connecte: accedez directement au dashboard admin.';
+            welcomeState.textContent = 'Mode administrateur connecté : accédez directement au dashboard admin.';
             logoutBtn.style.display = 'inline-block';
         }
 
@@ -359,20 +127,19 @@
 
             localStorage.removeItem('role');
             localStorage.removeItem('currentUserEmail');
-            window.location.href = 'login.html';
+            window.location.href = 'frontend/login.html';
         });
 
         document.getElementById('startReservation').addEventListener('click', function () {
             if (role === 'admin') {
-                window.location.href = 'front/admin.html';
+                window.location.href = 'frontend/admin.html';
                 return;
             }
-
             if (role === 'user') {
-                window.location.href = 'front/place.html';
+                window.location.href = 'frontend/place.html';
                 return;
             }
-            window.location.href = 'front/login.html';
+            window.location.href = 'frontend/login.html';
         });
 
         async function chargerPlacesIndisponibles() {
@@ -410,16 +177,16 @@
                 }
 
                 if (role === 'admin') {
-                    window.location.href = 'admin.html';
+                    window.location.href = 'frontend/admin.html';
                     return;
                 }
 
                 if (role === 'user') {
-                    window.location.href = `front/place.html?seat=${encodeURIComponent(seat)}`;
+                    window.location.href = `frontend/place.html?seat=${encodeURIComponent(seat)}`;
                     return;
                 }
 
-                window.location.href = `front/login.html?seat=${encodeURIComponent(seat)}`;
+                window.location.href = `frontend/login.html?seat=${encodeURIComponent(seat)}`;
             });
         });
 
