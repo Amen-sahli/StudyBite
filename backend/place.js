@@ -8,22 +8,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     const {data: { user }} = await db.auth.getUser();
+    console.log('Utilisateur actuel:', user);
 
     if (!user) {
-        window.location.href = 'login.html';
-        return;
+        window.location.href = "login.html";
     }
-    const { data: client } = await db
-        .from("clients")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-
-    if (!client) {
-        window.location.href = 'login.html';
-        return;
-    }
-
 
     const params = new URLSearchParams(window.location.search);
     const requestedSeat = params.get('seat');

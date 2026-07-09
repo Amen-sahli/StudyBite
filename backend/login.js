@@ -49,7 +49,7 @@ loginButton.addEventListener('click', async (e) => {
 
     const destination = selectedSeat
         ? `place.html?seat=${encodeURIComponent(selectedSeat)}`
-        : 'index.html';
+        : 'place.html';
 
     window.location.href = destination;
 });

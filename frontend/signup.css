@@ -1,161 +1,127 @@
 /* =========================================================
-   Espace VIP Coworking — Design tokens (Inscription)
+   Espace VIP Coworking — Premium Signup UI (Full Screen)
    ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
 :root {
-    --ink: #211d17;
-    --ink-soft: #736a5b;
-    --paper: #faf5e9;
-    --card: #ffffff;
-    --gold: #e0a920;
-    --gold-deep: #b7860f;
-    --gold-tint: #fbecc4;
-    --line: #ece2cd;
-    --danger: #c0392b;
-    --r-sm: 10px;
-    --r-md: 18px;
-    --r-pill: 999px;
-    --shadow: 0 24px 48px -28px rgba(33, 29, 23, .35);
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-body: 'Inter', Arial, sans-serif;
-    --font-mono: 'IBM Plex Mono', Menlo, monospace;
+  --ink: #211d17;
+  --ink-soft: #736a5b;
+  --paper: #faf5e9;
+  --card: #ffffff;
+  --gold: #e0a920;
+  --gold-deep: #b7860f;
+  --gold-tint: #fbecc4;
+  --line: #ece2cd;
+  --danger: #c0392b;
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-pill: 999px;
+  --shadow: 0 24px 48px -28px rgba(33, 29, 23, .35);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', Menlo, monospace;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { 
+  height: 100%; 
+  font-family: var(--font-body); 
+  background: var(--paper); 
+  color: var(--ink); 
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden; /* Prevents main body scroll */
+}
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-body);
-    background: var(--paper);
-    background-image: radial-gradient(circle at 82% 12%, rgba(224, 169, 32, .12), transparent 45%);
-    color: var(--ink);
-    -webkit-font-smoothing: antialiased;
+/* =========================================
+   1. Full Screen Split Layout
+   ========================================= */
+.signup-screen { display: flex; height: 100vh; width: 100vw; }
+
+/* Left Side: Branding */
+.signup-brand {
+  flex: 1;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.signup-brand::before {
+  content: '';
+  position: absolute;
+  top: -20%; right: -20%;
+  width: 60%; height: 60%;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+  opacity: 0.15;
+}
+.signup-brand-content { position: relative; z-index: 1; text-align: center; max-width: 400px; }
+.signup-brand h1 { font-family: var(--font-display); font-size: 3.5rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.02em; }
+.signup-brand p { font-size: 1.1rem; color: rgba(250, 245, 233, 0.7); line-height: 1.6; }
+.signup-brand .logo-mark {
+  width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;
+  font-family: var(--font-display); font-size: 1.5rem; color: var(--gold);
+}
+
+/* Right Side: Form */
+.signup-form-wrapper {
+  flex: 1;
+  background: var(--paper);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto; /* Allows scrolling if the screen is extremely short */
+}
+.signup-form-box { width: 100%; max-width: 420px; } /* Slightly wider than login for extra fields */
+.signup-form-box h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 0.5rem; }
+.signup-form-box .subtitle { color: var(--ink-soft); margin-bottom: 2rem; font-size: 0.95rem; }
+
+/* =========================================
+   2. Form Elements
+   ========================================= */
+.groupe-input { margin-bottom: 1.25rem; text-align: left; }
+.groupe-input label { 
+  display: block; font-size: 0.75rem; font-weight: 600; color: var(--ink-soft); 
+  text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; 
+}
+.groupe-input input {
+  width: 100%; padding: 13px 16px; border-radius: var(--r-sm); border: 1.5px solid var(--line);
+  background: var(--card); font-family: var(--font-body); font-size: 0.95rem; transition: all 0.2s;
+}
+.groupe-input input:focus { 
+  outline: none; border-color: var(--gold); 
+  box-shadow: 0 0 0 4px rgba(224, 169, 32, 0.1); 
 }
 
 #error-message {
-    color: var(--danger);
-    margin-bottom: 12px;
-    font-size: 12.5px;
-    white-space: pre-line;
-    text-align: left;
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  min-height: 20px;
+  font-weight: 500;
+  white-space: pre-line;
 }
 
-.page-entiere {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
+.bouton-inscription {
+  width: 100%; padding: 15px; border: none; border-radius: var(--r-sm); background: var(--ink);
+  color: var(--paper); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.2s;
+  margin-top: 0.5rem;
 }
+.bouton-inscription:hover { background: var(--gold); color: var(--ink); transform: translateY(-1px); }
 
-.boite-connexion {
-    background: var(--card);
-    width: 100%;
-    max-width: 380px;
-    padding: 40px 32px;
-    border-radius: var(--r-md);
-    text-align: center;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--line);
+.signup-footer { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: var(--ink-soft); }
+.signup-footer a { color: var(--gold-deep); text-decoration: none; font-weight: 600; }
+.signup-footer a:hover { text-decoration: underline; }
+
+/* =========================================
+   3. Responsive (Mobile)
+   ========================================= */
+@media (max-width: 768px) { 
+  .signup-brand { display: none; } /* Hide brand side on mobile to focus on form */
+  .signup-form-wrapper { padding: 1.5rem; }
 }
-
-.logo {
-    width: 88px;
-    height: 88px;
-    margin: 0 auto 18px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 2px solid var(--gold);
-    background: var(--paper);
-}
-
-.logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-.eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-    margin: 0 0 6px;
-}
-
-.titre {
-    margin: 0 0 6px;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 26px;
-}
-
-.sous-titre {
-    font-size: 13.5px;
-    color: var(--ink-soft);
-    margin: 0 0 26px;
-}
-
-.groupe-input {
-    margin-bottom: 16px;
-    text-align: left;
-}
-
-.groupe-input label {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.groupe-input input {
-    width: 100%;
-    padding: 13px 15px;
-    border-radius: var(--r-pill);
-    border: 1.5px solid var(--line);
-    background: #fbf9f4;
-    font-family: var(--font-body);
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: border-color .15s ease, background .15s ease;
-}
-
-.groupe-input input:focus {
-    outline: none;
-    border-color: var(--gold);
-    background: #fff;
-}
-
-.bouton-connexion {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: var(--r-pill);
-    background: var(--gold);
-    color: #241d0d;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    margin-top: 8px;
-    box-shadow: 0 10px 22px -10px rgba(224, 169, 32, .65);
-    transition: background .15s ease, transform .15s ease;
-}
-
-.bouton-connexion:hover { background: var(--gold-deep); transform: translateY(-1px); }
-
-.zone-inscription {
-    margin-top: 24px;
-    font-size: 13.5px;
-    color: var(--ink-soft);
-}
-
-.zone-inscription a {
-    color: var(--gold-deep);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.zone-inscription a:hover { text-decoration: underline; }

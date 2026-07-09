@@ -1,7 +1,7 @@
-    const nameInput = document.getElementById("nom");
+const nameInput = document.getElementById("fullname");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
-const confirmPassword = document.getElementById("confirm-password");
+const confirmPassword = document.getElementById("confirm_password");
 const signupBtn = document.getElementById("signup-btn");
 const errorMessage = document.getElementById("error-message");
 
@@ -10,6 +10,7 @@ function verifierChamps() {
 
     if (!nameInput.value || !email.value || !password.value || !confirmPassword.value) {
         errorMessage.textContent += "Veuillez remplir tous les champs!\n";
+        return;
     }
     if (nameInput.value.length < 3 || nameInput.value.length > 20 || nameInput.value.match(/\d/)) {
         errorMessage.textContent += "Le nom doit comporter entre 3 et 20 caractères et ne doit pas contenir de chiffres!\n";
@@ -49,12 +50,17 @@ signupBtn.addEventListener("click", async (e) => {
 
     const user = data.user;
 
-    if (user) {
-        await db.from("clients").insert({
+    const { error: insertError } = await db
+    .from("clients")
+    .insert({
         id: user.id,
         name: nameInput.value,
         email: email.value
     });
+
+    if (insertError) {
+        console.log(insertError);
+        alert(insertError.message);
     }
 
 

@@ -10,160 +10,196 @@
 </head>
 <body>
 
-<div class="page-entiere">
-    <div class="boite-reservation">
-        <header class="rsv-header">
-            <div class="logo">
-                <a href="index.html" title="Retour accueil">
-                    <img src="../logo.png" alt="Logo">
-                </a>
+<div class="reservation-layout">
+    <!-- Top Navigation -->
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">V</div>
+            <div class="brand-text">
+                <div class="eyebrow">Coworking</div>
+                <h1>Espace VIP</h1>
             </div>
-            <div class="rsv-logout">
-                <button type="button" id="logoutBtn">Déconnexion</button>
-            </div>
-            <p class="eyebrow">✨ Espace VIP</p>
-            <h1>Réservez votre poste de travail</h1>
-            <p>Un environnement spacieux conçu pour votre productivité.</p>
-        </header>
+        </div>
+        <div class="actions">
+            <!-- Link to login or index depending on your auth flow -->
+            <a href="login.html" class="btn btn-ghost">Déconnexion</a>
+        </div>
+    </header>
 
-        <form id="reservationForm">
-            <div class="form-container">
-                <div class="section">
-                    <div class="group">
-                        <label>
-                            <span class="sigle">👤</span>
-                            Informations personnelles
-                        </label>
-                        <input
-                            type="text"
-                            id="fullName"
-                            name="fullName"
-                            placeholder="Nom complet"
-                            required>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Adresse email"
-                            required>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="Téléphone">
+    <!-- Main Content Area -->
+    <div class="reservation-body">
+        
+        <!-- Left: Interactive Map -->
+        <aside class="map-panel">
+            <div class="panel-header">
+                <h2>Plan de la salle</h2>
+                <p>Sélectionnez votre place idéale</p>
+            </div>
+
+            <div class="zones">
+                <!-- Zone Alpha -->
+                <div class="zone">
+                    <h3 class="zone-title">🌟 Zone Alpha</h3>
+                    <div class="seats">
+                        <button type="button" class="seat free" data-seat="A1">A1</button>
+                        <button type="button" class="seat free" data-seat="A2">A2</button>
+                        <button type="button" class="seat occupied" data-seat="A3">A3</button>
+                        <button type="button" class="seat free" data-seat="A4">A4</button>
+                        <button type="button" class="seat free" data-seat="A5">A5</button>
+                        <button type="button" class="seat occupied" data-seat="A6">A6</button>
                     </div>
+                </div>
 
-                    <div class="group">
-                        <label>
-                            <span class="sigle">🍹</span>
-                            Votre Machroub préféré
-                        </label>
+                <!-- Zone Beta -->
+                <div class="zone">
+                    <h3 class="zone-title">💎 Zone Beta</h3>
+                    <div class="seats">
+                        <button type="button" class="seat free" data-seat="B1">B1</button>
+                        <button type="button" class="seat occupied" data-seat="B2">B2</button>
+                        <button type="button" class="seat free" data-seat="B3">B3</button>
+                        <button type="button" class="seat free" data-seat="B4">B4</button>
+                        <button type="button" class="seat free" data-seat="B5">B5</button>
+                        <button type="button" class="seat free" data-seat="B6">B6</button>
+                    </div>
+                </div>
+
+                <!-- Zone Gamma -->
+                <div class="zone">
+                    <h3 class="zone-title">🚀 Zone Gamma</h3>
+                    <div class="seats">
+                        <button type="button" class="seat free" data-seat="C1">C1</button>
+                        <button type="button" class="seat free" data-seat="C2">C2</button>
+                        <button type="button" class="seat free" data-seat="C3">C3</button>
+                        <button type="button" class="seat occupied" data-seat="C4">C4</button>
+                        <button type="button" class="seat free" data-seat="C5">C5</button>
+                        <button type="button" class="seat free" data-seat="C6">C6</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item"><span class="box free"></span> Disponible</div>
+                <div class="legend-item"><span class="box selected"></span> Sélectionné</div>
+                <div class="legend-item"><span class="box occupied"></span> Occupé</div>
+            </div>
+        </aside>
+
+        <!-- Right: Form & Summary -->
+        <main class="form-panel">
+            <div class="form-scroll">
+                <div class="form-header">
+                    <h2>Finaliser la réservation</h2>
+                    <p>Complétez les détails pour confirmer votre venue.</p>
+                </div>
+
+                <form action="#" method="POST" class="reservation-form" id="reservationForm">
+                    
+                    <!-- Date & Time -->
+                    <fieldset class="form-section">
+                        <legend>📅 Date et Heure</legend>
+                        <div class="form-grid">
+                            <div class="group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="group">
+                                <label for="heureDebut">Heure de début</label>
+                                <input type="time" id="heureDebut" name="heureDebut" required>
+                            </div>
+                            <div class="group">
+                                <label for="heureFin">Heure de fin</label>
+                                <input type="time" id="heureFin" name="heureFin" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Personal Info -->
+                    <fieldset class="form-section">
+                        <legend>👤 Informations personnelles</legend>
+                        <div class="form-grid">
+                            <div class="group">
+                                <label for="nom">Nom complet</label>
+                                <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required>
+                            </div>
+                            <div class="group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="nom@exemple.com" required>
+                            </div>
+                            <div class="group">
+                                <label for="tel">Téléphone</label>
+                                <input type="tel" id="tel" name="tel" placeholder="+216 XX XXX XXX">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Drinks -->
+                    <fieldset class="form-section">
+                        <legend>🍹 Votre Machroub préféré</legend>
                         <div class="drinks">
-                            <label class="drink"><input type="radio" name="m" value="cafe" checked><span>☕ Café</span></label>
-                            <label class="drink"><input type="radio" name="m" value="the"><span>🍵 Thé</span></label>
-                            <label class="drink"><input type="radio" name="m" value="jus"><span>🥤 Jus</span></label>
+                            <label class="drink">
+                                <input type="radio" name="drink" value="cafe">
+                                <span>☕ Café</span>
+                            </label>
+                            <label class="drink">
+                                <input type="radio" name="drink" value="the">
+                                <span>🍵 Thé</span>
+                            </label>
+                            <label class="drink">
+                                <input type="radio" name="drink" value="jus">
+                                <span>🥤 Jus</span>
+                            </label>
+                            <label class="drink">
+                                <input type="radio" name="drink" value="aucun" checked>
+                                <span>🚰 Aucun</span>
+                            </label>
                         </div>
-                    </div>
+                    </fieldset>
 
-                    <div class="group">
-                        <label for="complaint">
-                            <span class="sigle">📝</span>
-                            Réclamation ou remarque (optionnel)
-                        </label>
-                        <textarea id="complaint" name="complaint" rows="3" placeholder="Partagez votre remarque ici..."></textarea>
-                    </div>
-                </div>
+                    <!-- Remarks -->
+                    <fieldset class="form-section">
+                        <legend>📝 Réclamation ou remarque</legend>
+                        <div class="group">
+                            <textarea id="remarque" name="remarque" placeholder="Dites-nous si vous avez des besoins spécifiques..."></textarea>
+                        </div>
+                    </fieldset>
 
-                <div class="group">
-                    <label>
-                        <span class="sigle">📅</span>
-                        Date, heure et durée de réservation
-                    </label>
-                    <input type="date" id="reservationDate" name="reservationDate" required>
-                    <input type="time" id="reservationTime" name="reservationTime" required>
-                    <input type="text" id="reservationDuration" name="reservationDuration" required placeholder="Durée en heures">
-                    <div id="heureFin"></div>
-                </div>
-
-                <div class="map">
-                    <label>
-                        <span class="sigle">🗺️</span>
-                        Plan de salle interactif
-                    </label>
-
-                    <div class="legend">
-                        <div class="legend-item">
-                            <div class="box"></div>
-                            <span>Disponible</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="box selected"></div>
-                            <span>Sélectionné</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="box occupied"></div>
-                            <span>Occupé</span>
-                        </div>
-                    </div>
-
-                    <div class="plan">
-                        <div class="zone">
-                            <div class="surface">
-                                <span class="sigle">🌟</span>
-                                Zone Alpha
-                            </div>
-                            <div class="seats" data-zone="alpha">
-                                <div class="seat free" data-seat="A1" title="Place A1 - Disponible">A1</div>
-                                <div class="seat free" data-seat="A2" title="Place A2 - Disponible">A2</div>
-                                <div class="seat free" data-seat="A3" title="Place A3 - Disponible">A3</div>
-                                <div class="seat free" data-seat="A4" title="Place A4 - Disponible">A4</div>
-                                <div class="seat free" data-seat="A5" title="Place A5 - Disponible">A5</div>
-                                <div class="seat free" data-seat="A6" title="Place A6 - Disponible">A6</div>
-                            </div>
-                        </div>
-                        <div class="zone">
-                            <div class="surface">
-                                <span class="sigle">💎</span>
-                                Zone Beta
-                            </div>
-                            <div class="seats" data-zone="beta">
-                                <div class="seat free" data-seat="B1" title="Place B1 - Disponible">B1</div>
-                                <div class="seat free" data-seat="B2" title="Place B2 - Disponible">B2</div>
-                                <div class="seat free" data-seat="B3" title="Place B3 - Disponible">B3</div>
-                                <div class="seat free" data-seat="B4" title="Place B4 - Disponible">B4</div>
-                                <div class="seat free" data-seat="B5" title="Place B5 - Disponible">B5</div>
-                                <div class="seat free" data-seat="B6" title="Place B6 - Disponible">B6</div>
-                            </div>
-                        </div>
-
-                        <div class="table">
-                            <div class="surface">
-                                <span class="sigle">🚀</span>
-                                Zone Gamma
-                            </div>
-                            <div class="seats" data-zone="gamma">
-                                <div class="seat free" data-seat="C1" title="Place C1 - Disponible">C1</div>
-                                <div class="seat free" data-seat="C2" title="Place C2 - Disponible">C2</div>
-                                <div class="seat free" data-seat="C3" title="Place C3 - Disponible">C3</div>
-                                <div class="seat free" data-seat="C4" title="Place C4 - Disponible">C4</div>
-                                <div class="seat free" data-seat="C5" title="Place C5 - Disponible">C5</div>
-                                <div class="seat free" data-seat="C6" title="Place C6 - Disponible">C6</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
 
-            <footer class="rsv-footer">
-                <button type="submit" class="btn-confirm" id="confirmBtn">
-                    <span class="sigle">🎯</span>
-                    <span class="text">Confirmer la réservation</span>
-                    <span class="price">25 DT / jour</span>
+            <!-- Sticky Footer / Summary -->
+            <footer class="form-footer">
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <span class="label">Place choisie</span>
+                        <span class="value" id="selectedSeatDisplay">Aucune</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Total</span>
+                        <span class="value price">25 DT</span>
+                    </div>
+                </div>
+                <button type="submit" form="reservation-form" class="btn-confirm">
+                    Confirmer la réservation
                 </button>
             </footer>
-        </form>
+        </main>
+
     </div>
 </div>
+
+<!-- Interactive Seat Selection Logic -->
+<script>
+    document.querySelectorAll('.seat.free').forEach(seat => {
+        seat.addEventListener('click', function() {
+            // Remove selected class from all seats
+            document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
+            // Add to clicked seat
+            this.classList.add('selected');
+            // Update the summary footer
+            document.getElementById('selectedSeatDisplay').textContent = this.dataset.seat;
+        });
+    });
+</script>
 
 <script src="../backend/supabase-client.js"></script>
 <script src="../backend/place.js"></script>
