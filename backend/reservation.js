@@ -30,6 +30,35 @@ document.getElementById('reservationForm').addEventListener('submit', async func
         return;
     }
 
+    if (debut < new Date()) {
+        alert('⚠️ La date et l\'heure doivent être dans le futur !');
+        return;
+    }
+
+    const { data: existing, error: fetchError } = await db
+        .from('reservations')
+        .select('heure_debut, duree')
+        .eq('seat', seat)
+        .eq('date_reservation', date);
+
+    if (fetchError) {
+        alert('⚠️ Erreur lors de la vérification de disponibilité !');
+        console.error(fetchError);
+        return;
+    }
+
+    if (existing && existing.length > 0) {
+        const overlap = existing.some(r => {
+            const existStart = new Date(`${date}T${r.heure_debut.slice(0, 5)}:00`);
+            const existEnd   = new Date(existStart.getTime() + r.duree * 3600000);
+            return debut < existEnd && existStart < fin;
+        });
+        if (overlap) {
+            alert('⚠️ Cette place est déjà réservée pour ce créneau horaire !');
+            return;
+        }
+    }
+
     const dureeMs  = fin - debut;
     const duree    = dureeMs / (1000 * 60 * 60);
 
@@ -62,7 +91,5 @@ document.getElementById('reservationForm').addEventListener('submit', async func
             s.classList.remove('selected');
             s.classList.add('free');
         });
-
-        window.chargerSiegesOccupes?.();
     }
 });

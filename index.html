@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="actions">
-            <a href="frontend/login.html" class="btn btn-primary">Connexion et Réserver</a>
-            <a href="#" class="btn btn-ghost">Déconnexion</a>
+            <a href="frontend/login.html" class="btn btn-primary" id="loginBtn">Connexion et Réserver</a>
+            <a href="#" class="btn btn-ghost" id="logoutBtn" style="display:none">Déconnexion</a>
         </div>
     </header>
 
@@ -123,6 +123,25 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="./backend/supabase-client.js"></script>
     <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        db.auth.getUser().then(({ data: { user } }) => {
+            if (user) {
+                loginBtn.style.display = 'none';
+                logoutBtn.style.display = '';
+            } else {
+                loginBtn.style.display = '';
+                logoutBtn.style.display = 'none';
+            }
+        });
+
+        logoutBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await db.auth.signOut();
+            window.location.reload();
+        });
+
         document.querySelectorAll('.seat').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const seat = btn.dataset.seat;

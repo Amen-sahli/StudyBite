@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded',async function () {
 
     function renderTable(list) {
         if (!list.length) {
-            tableBody.innerHTML = '<tr><td colspan="10">Aucune reservation trouvee pour ce filtre.</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="11">Aucune reservation trouvee pour ce filtre.</td></tr>';
             return;
         }
 

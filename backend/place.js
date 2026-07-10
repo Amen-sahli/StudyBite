@@ -7,67 +7,28 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.location.href = "login.html";
     }
 
+    const { data: client } = await db
+        .from('clients')
+        .select('name')
+        .eq('id', user.id)
+        .single();
+
+    if (client) {
+        const nomInput = document.getElementById('nom');
+        const emailInput = document.getElementById('email');
+        if (nomInput) nomInput.value = client.name || '';
+        if (emailInput) emailInput.value = user.email || '';
+    }
+
     const params = new URLSearchParams(window.location.search);
     const requestedSeat = params.get('seat');
 
     if (logoutBtn) {
         logoutBtn.addEventListener("click", async () => {
-        const { error } = await db.auth.signOut();
-
-        console.log("Logout error:", error);
-
-        const {data: { user }} = await db.auth.getUser();
-
-        console.log("User after logout:", user);
-
-        console.log("Session after logout:",
-        await db.auth.getSession());
-
-        
-
-        window.location.href = "login.html";
-});
-    }
-
-    async function chargerSiegesOccupes() {
-        const now = new Date().toISOString();
-        const { data, error } = await db
-            .from('reservations')
-            .select('seat')
-            .gte('heure_fin', now); 
-
-        if (error) {
-            console.error(error);
-            return;
-        }
-
-
-        document.querySelectorAll('.seat').forEach(s => {
-            s.classList.remove('occupied', 'selected');
-            s.classList.add('free');
+            await db.auth.signOut();
+            window.location.href = "login.html";
         });
-
-
-        data.forEach(r => {
-            const seat = document.querySelector(`[data-seat="${r.seat}"]`);
-            if (seat) {
-                seat.classList.remove('free');
-                seat.classList.add('occupied');
-            }
-        });
-
-        attacherClics();
-
-        if (requestedSeat) {
-            const seat = document.querySelector(`[data-seat="${requestedSeat}"]`);
-            if (seat && seat.classList.contains('free')) {
-                seat.click();
-            }
-        }
     }
-
-    window.chargerSiegesOccupes = chargerSiegesOccupes;
-
 
     function attacherClics() {
         document.querySelectorAll('.seat.free').forEach(seat => {
@@ -84,6 +45,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    chargerSiegesOccupes();
+    attacherClics();
+
+    if (requestedSeat) {
+        const seat = document.querySelector(`[data-seat="${requestedSeat}"]`);
+        if (seat && seat.classList.contains('free')) {
+            seat.click();
+        }
+    }
 
 }); 
