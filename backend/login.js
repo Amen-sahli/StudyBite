@@ -4,8 +4,6 @@ const loginButton = document.getElementById('login-button');
 const errorMessage = document.getElementById('error-message');
 const seatHint = document.getElementById('seat-hint');
 
-const ADMIN_EMAIL = 'admin@espacevip.tn';
-const ADMIN_PASSWORD = 'Admin123!';
 
 const params = new URLSearchParams(window.location.search);
 const selectedSeat = params.get('seat');
@@ -24,18 +22,6 @@ loginButton.addEventListener('click', async (e) => {
         return;
     }
 
-    // Admin bypass
-    if (email.value === ADMIN_EMAIL) {
-        if (password.value === ADMIN_PASSWORD) {
-            localStorage.setItem('role', 'admin');
-            localStorage.setItem('currentUserEmail', email.value);
-            window.location.href = 'admin.html';
-            return;
-        }
-        errorMessage.textContent = "Identifiants admin invalides!";
-        return;
-    }
-
     // Supabase Auth login for regular users
     const { data, error } = await db.auth.signInWithPassword({
         email: email.value,
@@ -47,9 +33,25 @@ loginButton.addEventListener('click', async (e) => {
         return;
     }
 
-    const destination = selectedSeat
-        ? `place.html?seat=${encodeURIComponent(selectedSeat)}`
-        : 'place.html';
+    const {data: { user }} = await db.auth.getUser();
+    const { data: client } = await db
+        .from("clients")
+        .select("role")
+        .eq("id", user.id)
+        .single();
 
-    window.location.href = destination;
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    if (client.role === "admin") {
+        window.location.href = "admin.html";
+    } else {
+        const destination = selectedSeat
+        ? `place.html?seat=${encodeURIComponent(selectedSeat)}`
+        : '../index.html';
+        window.location.href = destination;
+    }
+    
 });

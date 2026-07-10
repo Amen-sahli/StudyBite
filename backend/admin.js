@@ -1,13 +1,24 @@
-const ADMIN_EMAIL = 'admin@espacevip.tn';
+document.addEventListener('DOMContentLoaded',async function () {
 
-document.addEventListener('DOMContentLoaded', function () {
-    const role = localStorage.getItem('role');
-    const email = localStorage.getItem('currentUserEmail');
+    const {
+        data: { user }
+    } = await db.auth.getUser();
 
-    if (role !== 'admin' || email !== ADMIN_EMAIL) {
-        window.location.href = 'login.html';
-        return;
+    if (!user) {
+        window.location.href = "login.html";
     }
+
+    const { data: client } = await db
+        .from("clients")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+
+    if (client.role !== "admin") {
+        window.location.href = "index.html";
+    }
+
+
 
     const tableBody = document.getElementById('reservationsTable');
     const searchInput = document.getElementById('searchInput');
@@ -26,9 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
             } catch (e) {
                 console.error(e);
             }
-
-            localStorage.removeItem('role');
-            localStorage.removeItem('currentUserEmail');
             window.location.href = 'login.html';
         });
     }

@@ -1,14 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    const role = localStorage.getItem('role');
     const logoutBtn = document.getElementById('logoutBtn');
       
-    if (role === 'admin') {
-        window.location.href = 'admin.html';
-        return;
-    }
-
     const {data: { user }} = await db.auth.getUser();
-    console.log('Utilisateur actuel:', user);
 
     if (!user) {
         window.location.href = "login.html";
@@ -18,17 +11,22 @@ document.addEventListener('DOMContentLoaded', async function () {
     const requestedSeat = params.get('seat');
 
     if (logoutBtn) {
-        logoutBtn.addEventListener('click', async function () {
-            try {
-                await db.auth.signOut();
-            } catch (e) {
-                console.error(e);
-            }
+        logoutBtn.addEventListener("click", async () => {
+        const { error } = await db.auth.signOut();
 
-            localStorage.removeItem('role');
-            localStorage.removeItem('currentUserEmail');
-            window.location.href = 'login.html';
-        });
+        console.log("Logout error:", error);
+
+        const {data: { user }} = await db.auth.getUser();
+
+        console.log("User after logout:", user);
+
+        console.log("Session after logout:",
+        await db.auth.getSession());
+
+        
+
+        window.location.href = "login.html";
+});
     }
 
     async function chargerSiegesOccupes() {
