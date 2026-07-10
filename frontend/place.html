@@ -178,7 +178,7 @@
                         <span class="value price">25 DT</span>
                     </div>
                 </div>
-                <button type="submit" form="reservation-form" class="btn-confirm">
+                <button type="submit" form="reservationForm" class="btn-confirm">
                     Confirmer la réservation
                 </button>
             </footer>
@@ -186,20 +186,6 @@
 
     </div>
 </div>
-
-<!-- Interactive Seat Selection Logic -->
-<script>
-    document.querySelectorAll('.seat.free').forEach(seat => {
-        seat.addEventListener('click', function() {
-            // Remove selected class from all seats
-            document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
-            // Add to clicked seat
-            this.classList.add('selected');
-            // Update the summary footer
-            document.getElementById('selectedSeatDisplay').textContent = this.dataset.seat;
-        });
-    });
-</script>
 
 <script src="../backend/supabase-client.js"></script>
 <script src="../backend/place.js"></script>

@@ -9,7 +9,8 @@ const params = new URLSearchParams(window.location.search);
 const selectedSeat = params.get('seat');
 
 if (seatHint && selectedSeat) {
-    seatHint.textContent = `Place choisie: ${selectedSeat}. Connectez-vous pour terminer la reservation.`;
+    seatHint.textContent = `Place choisie: ${selectedSeat}. Connectez-vous pour terminer la réservation.`;
+    seatHint.style.display = 'block';
 }
 
 loginButton.addEventListener('click', async (e) => {

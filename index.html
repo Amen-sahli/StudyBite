@@ -121,7 +121,20 @@
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="../backend/supabase-client.js"></script>
+    <script src="./backend/supabase-client.js"></script>
+    <script>
+        document.querySelectorAll('.seat').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const seat = btn.dataset.seat;
+                const { data: { user } } = await db.auth.getUser();
+                if (user) {
+                    window.location.href = 'frontend/place.html?seat=' + encodeURIComponent(seat);
+                } else {
+                    window.location.href = 'frontend/login.html?seat=' + encodeURIComponent(seat);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

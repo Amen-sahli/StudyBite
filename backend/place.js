@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
                 this.classList.remove('free');
                 this.classList.add('selected');
+                const display = document.getElementById('selectedSeatDisplay');
+                if (display) display.textContent = this.dataset.seat;
             };
         });
     }
