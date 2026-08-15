@@ -93,10 +93,10 @@ python -m http.server 8000
 ## Preview
 
 <img width="1919" height="975" alt="Screenshot 2026-08-15 150942" src="https://github.com/user-attachments/assets/053a355b-de74-4529-bd08-580a47802b62" />
-
 <img width="1919" height="975" alt="Screenshot 2026-08-15 150948" src="https://github.com/user-attachments/assets/442fcb6f-c70d-4740-942f-2e501a5f68e6" />
-<img width="1919" height="975" alt="Screenshot 2026-08-15 150937" src="https://github.com/user-attachments/assets/3b49640a-b1ca-4189-8174-bc4911848e6d" />
+<img width="1919" height="975" alt="Screenshot 2026-08-15 151035" src="https://github.com/user-attachments/assets/f46300a0-7d2e-4bd7-8bfb-0519e3797bc4" />
 <img width="1919" height="975" alt="Screenshot 2026-08-15 151055" src="https://github.com/user-attachments/assets/fea910ea-2740-43a6-954e-f793627138ec" />
 
 ## Admin page
-<img width="1919" height="975" alt="Screenshot 2026-08-15 151035" src="https://github.com/user-attachments/assets/f46300a0-7d2e-4bd7-8bfb-0519e3797bc4" />
+<img width="1919" height="975" alt="Screenshot 2026-08-15 150937" src="https://github.com/user-attachments/assets/3b49640a-b1ca-4189-8174-bc4911848e6d" />
+
